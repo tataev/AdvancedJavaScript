@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('../fonts/bebasneue_bold.woff2') format('woff2'),
+  url('../fonts/bebasneue_bold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/opensans-regular.woff2') format('woff2'),
+  url('../fonts/opensans-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -7,6 +23,11 @@
 
 .container {
   max-width: 95vw;
+  margin: 0 auto;
+}
+
+.container__products {
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -27,25 +48,81 @@ header {
   padding: 5px 0px;
 }
 
-.btn-cart {
-  background: none;
-  border: none;
+.btn-cart{
+  background-color: whitesmoke;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  color: #2f2a2d;
+  border-radius: 5px;
+  transition: all ease-in-out .4s;
   cursor: pointer;
+}
+
+.btn-cart:hover{
+  background-color: transparent;
+  border-color: #fafafa;
+  color: #fafafa;
+}
+.btn-cart, .logo{
+  align-self: center;
+}
+
+.cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div__bg {
+  background-color: navajowhite;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.12);
+  padding: 10px 0 10px 0;
 }
 
 .products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  /*justify-content: space-between;*/
+  justify-content: space-evenly;1
+  padding: 50px 0;
+  /*align-items: center;*/
 }
 
+/*.product__item {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+
+/*  border: 1px solid #a1a1a1;*/
+/*  border-radius: 5px;*/
+/*  padding: 30px 30px 0 30px;*/
+/*}*/
+
 .product-item {
+  border: 1px solid #a1a1a1;
   width: 200px;
   padding: 10px;
   background-color: floralwhite;
-  border-radius: 0px;
+  border-radius: 5px;
   box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.4);
 }
+
+.product__title {
+  /*font-family: BebasNeue;*/
+  /*font-size: 27px;*/
+  /*line-height: 25px;*/
+  /*font-weight: 400;*/
+  /*color: #afafaf;*/
+
+  /*margin: 0;*/
+}
+
+.product__text {
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 28px 0;
+}
+
 
 .buy-btn {
   margin-top: 10px;
@@ -53,6 +130,7 @@ header {
   background: transparent;
   border: 1px solid black;
   color: blue;
+  /*transition: all ease-in-out .4s;*/
   transition: 0.5s ease;
   border-radius: 50px;
   cursor: pointer;
@@ -67,9 +145,24 @@ header {
   width: 100%;
 }
 
+.div__title {
+  font-family: BebasNeue;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+}
+
 details{
   display:block;
   margin-bottom: .5rem;
+}
+
+.logo{
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 summary::-webkit-details-marker{display:none;}

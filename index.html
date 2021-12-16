@@ -2,40 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-магазин HW2</title>
+    <title>Интернет - магазин</title>
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 </head>
 <body>
     <header>
+        <div class="logo">Mega Shop</div>
         <div class="header container">
-            <button class="btn-cart" type="button"><img src="img/basket.svg" width="35" height="35" alt="icon"></button>
+            <button class="btn-cart" type="button"><img src="img/basket.svg" width="45px" height="39px"  viewBox="0 0 45 39" alt="icon"></button>
         </div>
     </header>
     <main>
-        <div class="products container"></div>
+        <main>
+            <div class="div__bg">
+                <h2 class="div_title">Популярные товары</h2>
+            </div>
+            <div class="container__products">
+                <div class="products">
+
+                </div>
+            </div>
+        </main>
     </main>
     <footer>
-        <br>
-        <pre>  1. Добавьте стили для верхнего меню, товара, списка товаров и кнопки вызова корзины. ☑</pre>
-        <br>
-        <pre>  2. Добавьте значения по умолчанию для аргументов функции. Как можно упростить или сократить запись функций? ☑</pre>
-            <details>
-                <summary>Ответ 2</summary>
-                <p> Создать класс Product на основе данных объекта, если данных нет, то в свойства нового объекта подставить данные по умолчанию.
- @param {string} title /  @param {number} price / @param {string} image
- @method Метод возвращает готовую строку с тегами и свойствами объекта.
-                </p>
-            </details>
-        <pre>  3. Сейчас после каждого товара на странице выводится запятая. Из-за чего это происходит? Как это исправить? ☑</pre>
+    <br>
+        <div class="div__bg">
         <details>
-            <summary>Ответ 3</summary>
-               <p>Для того, чтобы избавиться от лишних запятых нужно использовать join, <br>
-                тогда в productList будет передаваться строка из map, <br>
-                а не запятые как в случае с передачей из функции renderProduct со стрелочной функцией.
-                   <br>
-                   const productsList = list.map(item => renderProduct(item)).join('');
-               </p>
+            <summary>Задание 3</summary>
+        <pre>
+
         </details>
+        </div>
     </footer>
     <script src="js/main.js"></script>
 </body>

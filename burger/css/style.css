@@ -1,0 +1,122 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 70vw;
+  margin: 3% auto;
+  background-color: #cacaca;
+  padding: 2%;
+  border-radius: 7px;
+  box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.4);
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger__size {
+  position: relative;
+  margin: 50px 0;
+  display: flex;
+  width: 33vw;
+  justify-content: space-evenly;
+}
+
+.burger__size::before {
+  position: absolute;
+  content: "Размер";
+  top: -47px;
+  left: 156px;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.burger__filling {
+  position: relative;
+  margin: 30px 0;
+  display: flex;
+  width: 33vw;
+  justify-content: space-evenly;
+}
+
+.burger__filling::before {
+  position: absolute;
+  content: "Начинка";
+  top: -47px;
+  left: 147px;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.burger__additional {
+  position: relative;
+  margin: 30px 0;
+  display: flex;
+  width: 33vw;
+  justify-content: space-evenly;
+}
+
+.burger__additional::before {
+  position: absolute;
+  content: "Дополнительные опции";
+  top: -50px;
+  left: 39px;
+  font-size: 30px;
+  font-weight: 500;
+  width: 28vw;
+}
+
+.additional__label,
+.filling__label,
+.size__label {
+  border: none;
+  padding: 3%;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  background: #e2e2e2;
+}
+
+.additional__label:hover,
+.filling__label:hover,
+.size__label:hover {
+  background-color: #ff6060;
+}
+
+.additional__label:active,
+.filling__label:active,
+.size__label:active {
+  background-color: #f53c3c;
+}
+
+.info__summ,
+.info__calories {
+  display: flex;
+  align-items: center;
+}
+
+.calories__number,
+.summ__number {
+  margin-left: 10px;
+  font-size: 20px;
+  color: #ff6060;
+}
+
+.active {
+  border: 1px solid #ff6060;
+  box-shadow: 0px 0px 7px 6px rgba(0, 0, 0, 0.4);
+  color: seashell;
+  background: #ff6060;
+}
+/*# sourceMappingURL=style.css.map */

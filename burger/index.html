@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Burger</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="burger">
+                <h1>Burger Queen</h1>
+                <div class="burger__size">
+                    <!-- <h2>Размер</h2> -->
+                    <button class="size__label" data-price="50" data-calories="20" data-type="size">Маленький</button>              
+                    <button class="size__label" data-price="100" data-calories="40" data-type="size">Большой</button>              
+                </div>
+                <div class="burger__filling">
+                    <!-- <h2>Начинка</h2> -->
+                    <button class="filling__label" data-price="50" data-calories="20" data-type="filling">С сыром</button>
+                    <button class="filling__label" data-price="50" data-calories="20" data-type="filling">С салатом</button>
+                    <button class="filling__label" data-price="50" data-calories="20" data-type="filling">С картофелем</button>
+                </div>
+                <div class="burger__additional">
+                    <!-- <h2>Дополнительные опции</h2> -->
+                    <button class="additional__label" data-price="50" data-calories="20" data-type="additional_space">Добавить приправу</button>
+                    <button class="additional__label" data-price="50" data-calories="20" data-type="additional_mayonnaise">Добавить майонез</button>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info__summ">
+                    <h3 class="summ__title">Итоговая сумма:</h3>
+                    <p class="summ__number">0</p>
+                </div>
+                <div class="info__calories">
+                    <h3 class="calories__title">Каллории:</h3>
+                    <p class="calories__number">0</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script defer src="js/script.js"></script>
+</body>
+
+</html>
