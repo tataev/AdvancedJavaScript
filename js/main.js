@@ -1,5 +1,56 @@
 'use strict';
 
+let regEx = /(?<=\W|^)'|'(?!\w)/g;
+let str = "'We aren't actually at war.'";
+let fixedStr = str.replace(regEx, '"');
+
+console.log('Строка\n' + str);
+console.log('Исправленная строка\n' + fixedStr);
+
+send.addEventListener('click', () => {
+
+    let regExpName = /[a-zA-ZА-Яа-яёЁ]+/g;
+    let regExpPhone = /\+{1}\d{1}-{1}\d{3}-{1}\d{3}-{1}\d{2}-{1}\d{2}/g;
+    let regExpMail = /\w{6}@\w{4}\.\w{2}|\w{2}\.\w{4}@\w{4}\.\w{2}|\w{2}-\w{4}@\w{4}\.\w{2}/g;
+
+    let name = document.querySelector('#name');
+    let phone = document.querySelector('#phone');
+    let mail = document.querySelector('#email');
+
+    let nameMsg = document.querySelector('#name-message');
+    let phoneMsg = document.querySelector('#phone-message');
+    let mailMsg = document.querySelector('#email-message');
+
+    name.style.outline = "none";
+    phone.style.outline = "none";
+    mail.style.outline = "none";
+
+    nameMsg.textContent = "";
+    phoneMsg.textContent = "";
+    mailMsg.textContent = "";
+
+
+    let nameText = name.value;
+    let phoneText = phone.value;
+    let mailText = mail.value;
+
+    if(!regExpName.test(nameText)) {
+        name.style.outline = "1px solid red";
+        nameMsg.textContent = "Имя должно содержать только буквы";
+    }
+
+    if(!regExpPhone.test(phoneText)) {
+        phone.style.outline = "1px solid red";
+        phoneMsg.textContent = "Телефон должен быть в формате +7-999-999-99-99";
+    }
+
+    if(!regExpMail.test(mailText)) {
+        mail.style.outline = "1px solid red";
+        mailMsg.textContent = "E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru или my-mail@mail.ru.";
+    }
+});
+
+
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 // let getRequest = (url, cb) => {
@@ -74,18 +125,19 @@ class ProductItem{
         // if (!file_exists($img) || filesize($img) < 512) {
         //     // Перезаписываем переменную, путь картинки — заглушки.
         //     this.img = img;
-        //     // $img = 'datas/img/none.png';
+        //     // $img = 'img/no_image.svg';
         // }
 
     }
 
     render(){
         return `<div class="product-item">
-                        <img class="item__img" src="${this.img} onError="this.src='img/no_image.svg'"">
+<!--                        // <img class="item__img" src="${this.img} onError="this.src='img/no_image.svg'"">-->
+                        <img class="item__img" src='img/no_image.svg'>
                         <h3 class="item__title">${this.title}</h3>
                            <div class="product__text">
-<!--                                <p class="product__price">${this.price}</p>-->
-                                <p class="item__price">${this.price}</p>
+                                <p class="product__price">${this.price}</p>
+<!--                                <p class="item__price">${this.price}</p>-->
                                 <button class="buy-btn">Купить</button>
                             </div>
                     <br>
@@ -96,6 +148,8 @@ class ProductItem{
 
 let list = new ProductsList();
 console.log(list.allProducts);
+
+
 
 
 

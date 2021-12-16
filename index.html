@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">Mega Shop</div>
+        <div><img src="img/no_image.svg" width="15px" height="15px"> LOGO</div>
         <div class="header container">
             <button class="btn-cart" type="button"><img src="img/basket.svg" width="45px" height="39px"  viewBox="0 0 45 39" alt="icon"></button>
         </div>
@@ -26,14 +26,47 @@
             </div>
         </main>
     </main>
-    <footer>
+    <div></div>
     <br>
         <div class="div__bg">
         <details>
-            <summary>Задание 3</summary>
+            <summary>Задание 4</summary>
         <pre>
-
+1. Дан большой текст, в котором для оформления прямой речи используются одинарные кавычки. Придумать шаблон, который заменяет одинарные кавычки на двойные.
+2. Улучшить шаблон так, чтобы в конструкциях типа aren't одинарная кавычка не заменялась на двойную.
+3. *Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить. При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
+a. Имя содержит только буквы.
+b. Телефон имеет вид +7(000)000-0000.
+c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
+d. Текст произвольный.
+e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой и сообщить пользователю об ошибке.
+        </pre>
         </details>
+        </div>
+    <footer>
+        <div>
+        </div>
+        <div class="div__bg" align="center">
+                <form action="#">
+                    <fieldset>
+                        <legend>Контактная информация</legend>
+                        <label for="name">ФИО</label>
+                        <input id="name" placeholder="Хизри Татаев" autofocus required>
+                        <div id="name-message"></div>
+                        <br>
+                        <label for="phone">Телефон</label>
+                        <input id="phone" placeholder="+7-999-999-99-99" required>
+                        <div id="phone-message"></div>
+                        <br>
+                        <label for="email">E-mail</label>
+                        <input id="email" placeholder="mail@gmail.com" required>
+                        <div id="email-message"></div>
+                        <br>
+                        <label for="comments">О себе</label>
+                        <textarea id="comments" placeholder="Студент университета GEEKBRAINS"></textarea>
+                    </fieldset>
+                    <button id="send">Отправить</button>
+                </form>
         </div>
     </footer>
     <script src="js/main.js"></script>
