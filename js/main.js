@@ -1,8 +1,5 @@
 'use strict';
 
-
-'use strict';
-
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 const App = new Vue({

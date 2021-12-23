@@ -357,7 +357,6 @@ body {
   justify-self: center;
 }
 
-
 input[type="text"]:valid {
   background-color: darkseagreen;
 }
@@ -430,12 +429,13 @@ header {
   border-color: #fafafa;
   color: #fafafa;
 }
+
 .btn-cart, .logo{
   align-self: center;
 }
 
 .cart {
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
   align-items: center;
 }
@@ -475,13 +475,6 @@ padding: 50px 0;
 }
 
 .product__title {
-  /*font-family: BebasNeue;*/
-  /*font-size: 27px;*/
-  /*line-height: 25px;*/
-  /*font-weight: 400;*/
-  /*color: #afafaf;*/
-
-  /*margin: 0;*/
 }
 
 .product__text {
