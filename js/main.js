@@ -1,5 +1,127 @@
 'use strict';
 
+
+'use strict';
+
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+const App = new Vue({
+    el: '#app',
+    data: {
+        catalogUrl: '/catalogData.json',
+        cartUrl: '/getBasket.json',
+        products: [], //массив товаров из исходника необработанный
+        itemsInCart: [],
+        imgCatalog: 'https://picsum.photos/200/300?random',
+        imgCart: 'https://picsum.photos/100/150?random',
+        userSearch: '',
+        show: false,
+        abc: [],
+        productId: "",
+        productIdRmv: "",
+        productPrice: 0,
+        totalPrice: 0,
+        totalQuantity: 2,
+
+    },
+    methods: {
+        getJson(url){                             // 3) запустить getJson и получить url из mounted
+            return fetch(url)
+                .then(result => result.json())    // 4) получил исходник и перевел в JS, вернул в mounted
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+        addProduct(product){
+            this.getJson(`${API}/addToBasket.json`)
+                .then(data => {
+                    if(data.result === 1){
+                        this.productId = +product.id_product;
+                        let find = this.itemsInCart.find(product => product.id_product === this.productId);
+                        if(find){
+                            find.quantity++;
+                            this.calcTotalPrice();
+                        }
+                    } else {
+                        alert('Error');
+                    }
+                    // if (this.itemsInCart.length == 0) {
+                    //     ?????
+                    // }
+                })
+            console.log(this.totalPrice);
+        },
+
+        removeProduct(product) {
+            this.productIdRmv = +product.id_product;
+            let find = this.itemsInCart.find(product => product.id_product === this.productIdRmv);
+            if(find.quantity > 1){
+                find.quantity--;
+            } else {
+                this.itemsInCart.splice(this.itemsInCart.indexOf(find), 1);
+            }
+            this.calcTotalPrice();
+        },
+
+        toggleClass(event) {
+            event.target.nextElementSibling.classList.toggle('vsbl');
+
+            this.calcTotalPrice();
+
+        },
+        filter() {
+            console.dir(this.userSearch);
+            document.querySelector(".products").classList.add('invsbl');
+            document.querySelector(".searchResult__wrap").classList.remove('invsbl');
+            //let nnn = "["+this.userSearch+"]"+"+";
+
+            const REGEXP = new RegExp(this.userSearch, 'i');
+            //console.log(REGEXP.test("mmTT"));
+            this.abc = this.products.filter(el => REGEXP.test(el.product_name));
+
+            if (this.abc.length === 0) {
+                document.querySelector(".searchResult__text").innerHTML ='Поиск не дал результатов';
+            } else {
+                document.querySelector(".searchResult__text").innerHTML ='Результат поиска';
+            }
+        },
+        calcTotalPrice() {
+            this.totalPrice = 0;
+            this.totalQuantity = 0;
+            for (let elem of this.itemsInCart) {
+                this.productPrice = +elem.price;
+                console.log(this.productPrice);
+                console.log(elem.quantity);
+                this.totalPrice = this.totalPrice + this.productPrice*elem.quantity;
+                this.totalQuantity = this.totalQuantity + elem.quantity;
+            }
+        }
+    },
+    mounted(){                                      // 1) запускается первым
+        this.getJson(`${API + this.catalogUrl}`)     // 2) запустить getJson и передать url
+            .then(data => {                          // 5) получил исходник в JS
+                for(let el of data){                 // 6) для каждого объекта исходника
+                    this.products.push(el);          //  - записать каждый в массив products
+                }
+            }),
+            /*this.getJson(`getProducts.json`)
+                .then(data => {
+                    for(let el of data){
+                        this.products.push(el);
+                    }
+                }),*/
+
+            this.getJson(`${API + this.cartUrl}`)     // 2) запустить getJson и передать url
+                .then(data => {                          // 5) получил исходник в JS
+                    for(let el of data.contents){        // 6) для каждого объекта исходника
+                        this.itemsInCart.push(el);          //  - записать каждый в cart
+                    }
+                })
+    }
+})
+
+//
+
 let regEx = /(?<=\W|^)'|'(?!\w)/g;
 let str = "'We aren't actually at war.'";
 let fixedStr = str.replace(regEx, '"');
@@ -50,8 +172,7 @@ send.addEventListener('click', () => {
     }
 });
 
-
-const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+// const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 // let getRequest = (url, cb) => {
 //     let xhr = new XMLHttpRequest();
@@ -68,92 +189,150 @@ const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-a
 //     };
 //     xhr.send();
 // };
-
-class ProductsList {
-    constructor(container = '.products'){
-        this.container = container;
-        this.goods = [];//массив товаров из JSON документа
-        this._getProducts()
-            .then(data => { //data - объект js
-                this.goods = data;
-//                 console.log(data);
-                this.render()
-            });
-    }
-    // _fetchProducts(cb){
-    //     getRequest(`${API}/catalogData.json`, (data) => {
-    //         this.goods = JSON.parse(data);
-    //         console.log(this.goods);
-    //         cb();
-    //     })
-    // }
-
-    _getProducts(){
-
-        return fetch(`${API}/catalogData.json`)
-            .then(result => result.json())
-            .catch(error => {
-                console.log(error);
-            });
-
-    }
-    calcSum(){
-        return this.allProducts.reduce((accum, item) => accum += item.price, 0);
-    }
-    render(){
-        const block = document.querySelector(this.container);
-        for (let product of this.goods){
-            const productObj = new ProductItem(product);
-//            this.allProducts.push(productObj);
-            block.insertAdjacentHTML('beforeend', productObj.render());
-        }
-
-    }
-}
-
-class ProductItem{
-    constructor(product, img='img/no_image.svg'){
-        this.id = product.id;
-        // this.title = product.title;
-        this.title = product.product_name;
-        this.price = product.price;
-        // this.img = img;
-        this.img = product.img;
-
-        // $img = this.img;
-        // // Если картинки нет или её размер подозрительно маленький.
-        // if (!file_exists($img) || filesize($img) < 512) {
-        //     // Перезаписываем переменную, путь картинки — заглушки.
-        //     this.img = img;
-        //     // $img = 'img/no_image.svg';
-        // }
-
-    }
-
-    render(){
-        return `<div class="product-item">
-<!--                        // <img class="item__img" src="${this.img} onError="this.src='img/no_image.svg'"">-->
-                        <img class="item__img" src='img/no_image.svg'>
-                        <h3 class="item__title">${this.title}</h3>
-                           <div class="product__text">
-                                <p class="product__price">${this.price}</p>
-<!--                                <p class="item__price">${this.price}</p>-->
-                                <button class="buy-btn">Купить</button>
-                            </div>
-                    <br>
-                <div>`
-
-    }
-}
-
-let list = new ProductsList();
-console.log(list.allProducts);
-
-
-
-
-
 //
+// class ProductsList {
+//     constructor(container = '.products'){
+//         this.container = container;
+//         this.goods = [];//массив товаров из JSON документа
+//         this._getProducts()
+//             .then(data => { //data - объект js
+//                 this.goods = data;
+// //                 console.log(data);
+//                 this.render()
+//             });
+//     }
+
+
+// _fetchProducts(cb){
+//     getRequest(`${API}/catalogData.json`, (data) => {
+//         this.goods = JSON.parse(data);
+//         console.log(this.goods);
+//         cb();
+//     })
+// }
+//
+//     _getProducts(){
+//
+//         return fetch(`${API}/catalogData.json`)
+//             .then(result => result.json())
+//             .catch(error => {
+//                 console.log(error);
+//             });
+//
+//     }
+//     calcSum(){
+//         return this.allProducts.reduce((accum, item) => accum += item.price, 0);
+//     }
+//     render(){
+//         const block = document.querySelector(this.container);
+//         for (let product of this.goods){
+//             const productObj = new ProductItem(product);
+// //            this.allProducts.push(productObj);
+//             block.insertAdjacentHTML('beforeend', productObj.render());
+//         }
+//
+//     }
+// }
+//
+// class ProductItem{
+//     constructor(product, img='img/no_image.svg'){
+//         this.id = product.id;
+//         // this.title = product.title;
+//         this.title = product.product_name;
+//         this.price = product.price;
+//         // this.img = img;
+//         this.img = product.img;
+//
+//         // $img = this.img;
+//         // // Если картинки нет или её размер подозрительно маленький.
+//         // if (!file_exists($img) || filesize($img) < 512) {
+//         //     // Перезаписываем переменную, путь картинки — заглушки.
+//         //     this.img = img;
+//         //     // $img = 'img/no_image.svg';
+//         // }
+//
+//     }
+//
+//     render(){
+//         return `<div class="product-item">
+// <!--                        // <img class="item__img" src="${this.img} onError="this.src='img/no_image.svg'"">-->
+//                         <img class="item__img" src='img/no_image.svg'>
+//                         <h3 class="item__title">${this.title}</h3>
+//                            <div class="product__text">
+//                                 <p class="product__price">${this.price}</p>
+// <!--                                <p class="item__price">${this.price}</p>-->
+//                                 <button class="buy-btn">Купить</button>
+//                             </div>
+//                     <br>
+//                 <div>`
+//
+//     }
+// }
+//
+// let list = new ProductsList();
+//
+// console.log(list.allProducts);
+//
+//
+// //-----------------------------------//
+//
+// class backet {
+//     constructor(container = '.cart-block') {
+//         this.container = container;
+//         this.goods = [];
+//
+//         this._clickBasket();
+//         this._getBasketItem();
+//             .then(data => {
+//                 this.goods = data.contents;
+//                 this.render();
+//         });
+//     }
+//
+//     _getBasketItem() {
+//         return fetch(`$API{}/getBasket.json`)
+//             .then(result => result.json())
+//             .catch(error => {
+//                 console.log(error);
+//             })
+//     }
+//
+//     render() {
+//         const block = document.querySelector((this.container));
+//         for (let product of this.goods) {
+//             const productObj = new BasketItem();
+//
+//             block.insertAdjacentElement('beforeend', productObj.render(product));
+//         }
+//     }
+//
+//     _clickBasket() {
+//         document.querySelector(".btn-cart").addEventListener('click', () => {
+//             document.querySelector(this.container).classList.toggle('invisible');
+//         });
+//     }
+// }
+//
+// class BasketItem {
+//
+//     render(product, img = 'https://via.placeholder.com/50x50') {
+//         return `<div class = "cart-item" data-id="${product.id_product}">
+//                 <div class = "product-bio">
+//
+//                 </div>
+//                 </div>
+//         `
+//     }
+//
+// }
+//
+//
+//
+
+
+
+
+//-----------------------------------//
 // class ProductList{
 //     constructor(container='.products'){
 //         this.container = container;

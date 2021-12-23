@@ -1,74 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Интернет - магазин</title>
-    <link rel="stylesheet" href="css/normalize.css">
+    <!--    <link rel="stylesheet" href="css/normalize.css">-->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <header>
-        <div><img src="img/no_image.svg" width="15px" height="15px"> LOGO</div>
+<div id="app">
+    <header class = "header__wrapper">
         <div class="header container">
-            <button class="btn-cart" type="button"><img src="img/basket.svg" width="45px" height="39px"  viewBox="0 0 45 39" alt="icon"></button>
+            <img src="img/no_image.svg" alt="" width="30" height="30">LOGO
+            <a href="#" class="header__logo"></a>
+            <form action="#" class="header__search">
+                <input type="text" class="header__searchField" v-model= "userSearch" v-on:keyup.enter="filter">
+                <button class="header__searchBtn" type="submit" @click="filter">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <br>
+            <button class="btn-cart" @click="toggleClass" type="button"><img src="img/basket.svg" width="45px" height="39px"  viewBox="0 0 45 39" alt="icon"> ({{ totalQuantity }})</button>
+            <div class="cart">
+
+                <div class = "cart__item">
+                    <span></span>
+                    <span class="cart__head">Товар</span>
+                    <span class="cart__head">Цена</span>
+                    <span class="cart__head">Количество</span>
+                    <span class="cart__head">Стоимость</span>
+                    <span class="cart__head">Удалить</span>
+                </div>
+
+                <div class = "cart__item" v-for="el of itemsInCart" data-id="el.id_product" :key="el.id_product">
+                    <img :src="imgCart + el.id_product" :alt="el.product_name">
+
+                    <span data-id="el.id_product" class="cart__title">{{ el.product_name }}</span>
+                    <p data-id="el.id_product" class="cart__price">{{ el.price }} руб</p>
+
+                    <div data-id="el.id_product" class="itemInCart__quantity">{{ el.quantity }}</div>
+                    <p data-id="el.id_product" class="cart__price">{{ el.price*el.quantity }} руб</p>
+                    <svg data-id="el.id_product" class="itemInCart__delete" @click="removeProduct(el)" fill="currentColor" height="15" width="15" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg>
+                </div>
+                <p>Итого: {{ totalPrice }} руб</p>
+            </div>
         </div>
     </header>
-    <main>
-        <main>
-            <div class="div__bg">
-                <h2 class="div_title">Популярные товары</h2>
-            </div>
-            <div class="container__products">
-                <div class="products">
 
+    <main class = "container">
+        <div class="products">
+            <div class="product__item" data-id="el.id_product" v-for="el of products" :key="el.id_product"> <!--id_product, product_name , price - эти названия берутся и подгружаются в верстку из загружаемого файла. products - это наш массив с товарами в JS файле, который получили от fetch -->
+                <img :src="imgCatalog + el.id_product" :alt="el.product_name">
+                <div class="desc">
+                    <h3 class="products__title">{{ el.product_name }}</h3>
+                    <p class="products__price">{{ el.price }} руб</p>
+                    <button class="products__buyBtn" @click="addProduct(el)">Купить</button>
                 </div>
             </div>
-        </main>
-    </main>
-    <div></div>
-    <br>
-        <div class="div__bg">
-        <details>
-            <summary>Задание 4</summary>
-        <pre>
-1. Дан большой текст, в котором для оформления прямой речи используются одинарные кавычки. Придумать шаблон, который заменяет одинарные кавычки на двойные.
-2. Улучшить шаблон так, чтобы в конструкциях типа aren't одинарная кавычка не заменялась на двойную.
-3. *Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить. При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
-a. Имя содержит только буквы.
-b. Телефон имеет вид +7(000)000-0000.
-c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
-d. Текст произвольный.
-e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой и сообщить пользователю об ошибке.
-        </pre>
-        </details>
         </div>
-    <footer>
+
+        <div class="searchResult__wrap container invsbl">
+            <h3 class="searchResult__text">Результат поиска</h3>
+            <div class="searchResult">
+                <div class="product__item" data-id="el.id_product" v-for="el of abc" :key="el.id_product">
+                    <img :src="imgCatalog + el.id_product" :alt="el.product_name">
+                    <div class="desc">
+                        <h3 class="products__title">{{ el.product_name }}</h3>
+                        <p class="products__price">{{ el.price }} руб</p>
+                        <button class="products__buyBtn" @click="addProduct(el)">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <br>
+    <div class="div__bg">
+        <details>
+            <summary>Задание 5</summary>
+            <pre>
+   1. Добавить методы и обработчики событий для поля поиска. Создать в объекте данных поле searchLine и привязать к нему содержимое поля ввода. На кнопку «Искать» добавить обработчик клика, вызывающий метод FilterGoods.
+   2. Добавить корзину. В html-шаблон добавить разметку корзины. Добавить в объект данных поле isVisibleCart, управляющее видимостью корзины.
+   3. *Добавлять в .goods-list заглушку с текстом «Нет данных» в случае, если список товаров пуст.
+            </pre>
+        </details>
+    </div>
+    <footer align="center">
         <div>
         </div>
-        <div class="div__bg" align="center">
-                <form action="#">
-                    <fieldset>
-                        <legend>Контактная информация</legend>
-                        <label for="name">ФИО</label>
-                        <input id="name" placeholder="Хизри Татаев" autofocus required>
-                        <div id="name-message"></div>
-                        <br>
-                        <label for="phone">Телефон</label>
-                        <input id="phone" placeholder="+7-999-999-99-99" required>
-                        <div id="phone-message"></div>
-                        <br>
-                        <label for="email">E-mail</label>
-                        <input id="email" placeholder="mail@gmail.com" required>
-                        <div id="email-message"></div>
-                        <br>
-                        <label for="comments">О себе</label>
-                        <textarea id="comments" placeholder="Студент университета GEEKBRAINS"></textarea>
-                    </fieldset>
-                    <button id="send">Отправить</button>
-                </form>
-        </div>
     </footer>
-    <script src="js/main.js"></script>
+
+</div>
+
+<script>
+    let text = document.getElementById('text');
+    let replaceText = document.getElementById('replace_text');
+    let replace = document.getElementById('replace').addEventListener('click', () => {
+        a = text.textContent.replace(/\'/g, "\"");
+        replaceText.innerText = a;
+    });
+</script>
+
+<script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>
+
+<!--https://scrimba.com/scrim/cEQe4SJ?pl=pXKqta-->
