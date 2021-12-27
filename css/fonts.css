@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'SFProDisplay-Regulat', sans-serif;
+    src: url('../fonts/SFProDisplay/SFProDisplay-Regular.woff2') format('woff2'),
+         url('../fonts/SFProDisplay/SFProDisplay-Regular.woff2') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    /*оптимизация скорости загрузки шрифтов*/
+    font-display: swap;
+}
+/*best-fonts.pro*/
+
+@font-face {
+    font-family: 'SFProDisplay-Medium', sans-serif;
+    src: url('../fonts/SFProDisplay/SFProDisplay-Medium.woff2') format('woff2'),
+         url('../fonts/SFProDisplay/SFProDisplay-Medium.woff2') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    /*оптимизация скорости загрузки шрифтов*/
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SFProDisplay-Semibold', sans-serif;
+    src: url('../fonts/SFProDisplay/SFProDisplay-Semibold.woff2') format('woff2'),
+         url('../fonts/SFProDisplay/SFProDisplay-Semibold.woff2') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    /*оптимизация скорости загрузки шрифтов*/
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SFProDisplay-Bold', sans-serif;
+    src: url('../fonts/SFProDisplay/SFProDisplay-Bold.woff2') format('woff2'),
+         url('../fonts/SFProDisplay/SFProDisplay-Bold.woff2') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    /*оптимизация скорости загрузки шрифтов*/
+    font-display: swap;
+}
