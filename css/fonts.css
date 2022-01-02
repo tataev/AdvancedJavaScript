@@ -36,3 +36,6 @@
     /*оптимизация скорости загрузки шрифтов*/
     font-display: swap;
 }
+
+/*google*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,700;1,400&display=swap');
