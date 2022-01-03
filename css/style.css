@@ -60,6 +60,8 @@ body{
     font-weight: 700;
 }
 
+/*1C62CD*/
+/*0068B7*/
 .menu__item{
     /*максимально простое решение, плюс добавляем отступы*/
     display: inline-block;
@@ -80,6 +82,7 @@ body{
     width: 256px;
     padding-left: 30px;
     position: relative;
+    font-size: 12px;
 }
 
 .header__address::before{
@@ -127,7 +130,7 @@ body{
     /*h20+w20*/
     height: 20px;
     width: 20px;
-    background-color: #1C62CD;
+    background-color: #0068B7;
     border-radius: 50%;
     text-align: center;
     /*спозиционируем цифру*/
@@ -174,7 +177,7 @@ body{
     /*не возвращаем 0*/
     right:0;
     position: absolute;
-    background-color: #1C62CD;
+    background-color: #0068B7;
     height: 3px;
     bottom: -2px;
     transition: all .7s;
@@ -187,9 +190,9 @@ body{
     /*уберём, чтобы не скакало*/
     /*font-weight: 600;*/
     /*font-weight: 400;*/
-    color: #1C62CD;
+    color: #0068B7;
     /*переделать after/before*/
-    /*border-bottom: 3px solid #1C62CD;*/
+    /*border-bottom: 3px solid #0068B7;*/
 }
 
 .menu-categories__link:hover::before {
@@ -299,7 +302,7 @@ body{
 
 .sale-item__info{
     color: #fff;
-    background-color: #1C62CD;
+    background-color: #0068B7;
     padding: 8px 20px;
     text-transform: uppercase;
     line-height: 15px;
@@ -321,7 +324,7 @@ body{
 .sale-item__price-new{
     font-weight: 700;
     font-size: 27px;
-    color: #1C62CD;
+    color: #0068B7;
     line-height: 32px;
     margin-right: 6px;
     padding-right: 20px;
@@ -377,7 +380,7 @@ body{
 }
 
 .sale-item__footer span{
-    color: #1C62CD;
+    color: #0068B7;
     display: block;
     font-family: 'Barlow', sans-serif;
     font-weight: 700;
@@ -409,10 +412,23 @@ body{
     padding: 11px 26px 12px;
 }
 
-.search__tabs-item--active{
+.search__tabs-item.tab--active{
 /*    если модификатор прописан, то*/
     border-radius: 5px;
     background-color: #F0F0F4;
+    font-family: 'SFProDisplay-Bold', sans-serif;
+    font-weight: 700;
+}
+
+/*search__content-item*/
+/*.tabs-content{*/
+search__content-item{
+    display: none;
+}
+
+/*.search__content-item--active*/
+.search__content-item.tabs-content--active{
+    display: block;
 }
 
 .search__content-form{
@@ -421,19 +437,17 @@ body{
 
 .search__content-btn{
     font-family: 'SFProDisplay-Bold', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 14px;
-    font-style: normal;
     line-height: 17px;
     /* identical to box height */
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #FFFFFF;
-    background: #1C62CD;
+    color: #FFF;
+    background: #0068B7;
     border-radius: 3px;
-    padding: 17px 40px;
-    border: none;
     padding: 17px 41px;
+    border: none;
     margin-left: -3px;
 }
 
@@ -441,9 +455,9 @@ body{
     background: #F0F0F4;
     border-radius: 3px;
     padding: 5px 20px;
+    border: none;
     font-family: 'SFProDisplay-Bold', sans-serif;
     font-weight: 400;
-    font-style: normal;
     font-size: 16px;
     line-height: 19px;
     width: 100%;
@@ -453,7 +467,76 @@ body{
     color: #656464;
 }
 
+.categories__inner{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.categories__item{
+    margin-bottom: 30px;
+    border: 1px solid #CDCDCD;
+    /*bb прописан в самом верху*/
+    /*box-sizing: border-box;*/
+    border-radius: 3px;
+    width: 370px;
+    /*max-width: 370px;*/
+    display: flex;
+    padding: 20px 20px 16px;
+    justify-content: space-between;
+    /*align-items: ;*/
+    transition: all .3s;
+}
+
+.categories__item:hover{
+  box-shadow: 3px 3px 20px rgba(50,50,50,0.25);
+
+}
+
+.categories__item:hover .categories__item-title{
+    color: #0068B7;
+}
+.categories__item-info{
+    width: 50%;
+    /*height: 100px;*/
+    /*1*/
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.categories__item-img{
+    /*hz*/
+    /*display: flex;*/
+    text-align: center;
+    width: 50%;
+}
+
+.categories__item-img img{
+    max-width: 100%;
+}
+
+.categories__item-title{
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 28px;
+    transition: all .3s;
+}
+
+.categories__item-text{
+    font-size: 14px;
+    line-height: 17px;
+    color: #C4C4C4;
+}
+
+.categories__item-text::after{
+    content: url('../images/link-arrow.svg');
+    padding-left: 2px;
+}
 
 /*<link rel="preconnect" href="https://fonts.googleapis.com">*/
 /*<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>*/
 /*<link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">*/
+/*вставка SVG шпаргалка*/
+/*https://only-to-top.ru/blog/coding/2019-06-08-kak-vstavit-svg.html*/
