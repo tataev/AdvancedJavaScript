@@ -36,11 +36,11 @@
                     </ul>
                 </nav>
                 <a class="logo" href="#">
-                    <img src="images/logo.svg" alt="Logo" class="logo__img">
+                    <img src="images/mail-ru.svg" alt="Logo" class="logo__img" width="200px">
                 </a>
                 <div class="header__box">
                     <p class="header__address">
-                        Москва, ул. Науки 25
+                        <a href="https://yandex.ru/maps/org/geekbrains/1402263817/?ll=37.536922%2C55.796562&source=wizgeo&utm_medium=maps-desktop&utm_source=serp&z=16.99">Москва, Ленинградский пр-т <br>дом 39 строение 79</a>
                     </p>
                     <!--            ul.user-list>li.user-list__item*3-->
                     <ul class="user-list">
@@ -130,22 +130,22 @@
 
                     <div class="banner-section__slider">
                         <a class="banner-section__slider-item" href="#">
-                            <img class="banner-section__slider-img" src="images/banner-slider.jpg" alt="">
+                            <img class="banner-section__slider-img" src="images/slider/slider01.png" alt="slider01">
                         </a>
                         <a class="banner-section__slider-item" href="#">
-                            <img class="banner-section__slider-img" src="images/banner-slider.jpg" alt="">
+                            <img class="banner-section__slider-img" src="images/slider/slider02.png" alt="slider02">
                         </a>
                         <a class="banner-section__slider-item" href="#">
-                            <img class="banner-section__slider-img" src="images/banner-slider.jpg" alt="">
+                            <img class="banner-section__slider-img" src="images/slider/slider03.png" alt="slider03">
                         </a>
                         <a class="banner-section__slider-item" href="#">
-                            <img class="banner-section__slider-img" src="images/banner-slider.jpg" alt="">
+                            <img class="banner-section__slider-img" src="images/slider/slider04.png" alt="slider04">
                         </a>
                         <a class="banner-section__slider-item" href="#">
-                            <img class="banner-section__slider-img" src="images/banner-slider.jpg" alt="">
+                            <img class="banner-section__slider-img" src="images/slider/slider05.png" alt="slider05">
                         </a>
                         <a class="banner-section__slider-item" href="#">
-                            <img class="banner-section__slider-img" src="images/banner-slider.jpg" alt="">
+                            <img class="banner-section__slider-img" src="images/slider/slider06.png" alt="slider06">
                         </a>
 
                     </div>
@@ -186,26 +186,25 @@
 
            <div class="search__tabs">
 <!--               a*3-->
-               <a class="search__tabs-item search__tabs-item--active" href="#tab-1">Поиск по номеру</a>
-               <a class="search__tabs-item" href="#tab-2">Поиск по марке</a>
-               <a class="search__tabs-item" href="#tab-3">Поиск по названию</a>
+               <a class="tab search__tabs-item tab--active" href="#tab-1">Поиск по номеру</a>
+               <a class="tab search__tabs-item" href="#tab-2">Поиск по марке</a>
+               <a class="tab search__tabs-item" href="#tab-3">Поиск по названию</a>
            </div>
-
             <div class="search__content">
 <!--                ctrl+D копировать строку, множим   -->
-                <div id="tab-1" class="search__content-item">
+                <div id="tab-1" class="tabs-content search__content-item tabs-content--active">
                     <form class="search__content-form">
                         <input class="search__content-input" type="text" placeholder="Введите номер">
                         <button class="search__content-btn" type="submit">Искать</button>
                     </form>
                 </div>
-                <div id="tab-2" class="search__content-item">
+                <div id="tab-2" class="tabs-content search__content-item">
                     <form class="search__content-form">
                         <input class="search__content-input" type="text" placeholder="Введите марку">
                         <button class="search__content-btn" type="submit">Искать</button>
                     </form>
                 </div>
-                <div id="tab-3" class="search__content-item">
+                <div id="tab-3" class="tabs-content search__content-item">
                     <form class="search__content-form">
                         <input class="search__content-input" type="text" placeholder="Введите название товара">
                         <button class="search__content-btn" type="submit">Искать</button>
@@ -216,21 +215,115 @@
     </div>
 </section>
 
-<section class="page-section">
-    <b>Популярные товары</b>
-    <br>
-    Запчасти
-    Моторы
-    Шины
-    Электроника
-    Инструменты
-    <br>
-    <img src="images/logo.svg">
-    <img src="images/logo.svg">
-    <img src="images/logo.svg">
-    <img src="images/logo.svg">
-    <img src="images/logo.svg">
-    <img src="images/logo.svg">
+<section class="categories">
+<!--    .container+.categories__inner+.a.categories__item-->
+    <div class="container">
+        <div class="categories__inner">
+            <a href="#" class="categories__item">
+                <div class="categories__item-info">
+                    <h4 class="categories_item-title">Квадроциклы</h4>
+                    <p class="categories__item-text">Подробнее</p>
+                </div>
+<!--                <img  class="categories__item-img" src="images/content/categories-6.png" alt="categories-1.png">                -->
+<!--                нужна обёртка, мелкие рисунки не центрируются-->
+                <div class="categories__item-img">
+                    <img src="images/content/categories-1.png" alt="categories-1.png">
+                </div>
+            </a>
+            <a href="#" class="categories__item">
+                <div class="categories__item-info">
+                    <h4 class="categories__item-title">Гидроциклы</h4>
+                    <p class="categories__item-text">Подробнее</p>
+                </div>
+                <div class="categories__item-img">
+                    <img src="images/content/categories-2.png" alt="categories-2.png">
+                </div>
+            </a>
+            <a href="#" class="categories__item">
+                <div class="categories__item-info">
+                    <h4 class="categories__item-title">Катера</h4>
+                    <p class="categories__item-text">Подробнее</p>
+                </div>
+                <div class="categories__item-img">
+                    <img src="images/content/categories-3.png" alt="categories-3.png">
+                </div>
+            </a>
+            <a href="#" class="categories__item">
+                <div class="categories__item-info">
+                    <h4 class="categories__item-title">Снегоходы</h4>
+                    <p class="categories__item-text">Подробнее</p>
+                </div>
+                <div class="categories__item-img">
+                    <img src="images/content/categories-4.png" alt="categories-4.png">
+                </div>
+            </a>
+            <a href="#" class="categories__item">
+                <div class="categories__item-info">
+                    <h4 class="categories__item-title">Вездеходы</h4>
+                    <p class="categories__item-text">Подробнее</p>
+                </div>
+                <div class="categories__item-img">
+                    <img src="images/content/categories-5.png" alt="categories-5.png">
+                </div>
+            </a>
+            <a href="#" class="categories__item">
+                <div class="categories__item-info">
+                    <h4 class="categories__item-title">Двигатели</h4>
+                    <p class="categories__item-text">Подробнее</p>
+                </div>
+                <div class="categories__item-img">
+                    <img src="images/content/categories-6.png" alt="categories-6.png">
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <div class="products__inner">
+            <div class="tabs-wrapper">
+                <div class="tabs products_tabs">
+                    <a class="tab products_tab tab--active" href="#">Запчасти</a>
+                    <a class="tab products_tab" href="#">моторы</a>
+                    <a class="tab products_tab" href="#">шины</a>
+                    <a class="tab products_tab" href="#">электроника</a>
+                    <a class="tab products_tab" href="#">инструменты</a>
+                    <a class="tab products_tab" href="#">аксессуары</a>
+                </div>
+
+                <div class="tabs-container products__container">
+                    <div class="tabs-content products__content tabs-content--active"></div>
+
+                    <div class="tabs-content products__content">
+                        <div class="product-slider">
+                            <div class="product-slider__item">
+                                <a class="product-item" href="#" >
+                                    <button class="product-item__basket">
+                                        <img src="images/basket-white.svg" alt="basket white">
+                                    </button>
+                                    <img src="" alt="" class="product-item__img">
+                                </a>
+                                <h4 class="product-item__title">
+
+                                </h4>
+
+                                <p class="product-item__price"></p>
+                                <button class="product-item__basket">
+                                    <img src="images/basket-white.svg" alt="basket white">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tabs-content products__content"></div>
+                    <div class="tabs-content products__content"></div>
+                    <div class="tabs-content products__content"></div>
+                    <div class="tabs-content products__content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 
@@ -245,3 +338,14 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
+
+<!--<div class="tabs-wrapper">-->
+<!--    <div class="tabs">-->
+<!--        <a class="tab tab&#45;&#45;active" href="#"></a>-->
+<!--    </div>-->
+
+<!--    <div class="tabs-container">-->
+<!--        <div class="tabs-content"></div>-->
+<!--    </div>-->
+<!--</div>-->
